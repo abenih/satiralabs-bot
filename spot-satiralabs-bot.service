@@ -1,0 +1,22 @@
+[Unit]
+Description=SatiraLabs Telegram inquiry bot
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/satiralabs-bot
+EnvironmentFile=/opt/satiralabs-bot/.env
+Environment=BOT_DATA_DIR=/opt/satiralabs-bot/data
+ExecStart=/usr/bin/python3 /opt/satiralabs-bot/bot.py
+Restart=on-failure
+RestartSec=5
+# The bot only makes outbound HTTPS calls (Telegram long polling);
+# it needs write access solely to its data directory.
+ProtectSystem=strict
+ReadWritePaths=/opt/satiralabs-bot/data
+PrivateTmp=true
+NoNewPrivileges=true
+
+[Install]
+WantedBy=multi-user.target
