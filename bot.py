@@ -583,11 +583,10 @@ class Bot:
             self._forward_to_owner(ref, data)
             self.sessions.pop(chat_id, None)
             self._send(chat_id,
-                       f"✅ *Inquiry sent — thank you, {data['name']}!*\n\n"
-                       f"Your reference number is *{ref}*.\n"
-                       "The SatiraLabs team will reply within one business day "
-                       "(Monday to Saturday). For anything urgent, email "
-                       f"{CONTACT_EMAIL}.")
+                       "✅ Thank you for reaching out to SatiraLabs!\n\n"
+                       f"Your inquiry has been received — your reference number is {ref}.\n"
+                       "We'll get back to you within one business day.\n\n"
+                       "Thank you for considering us 🙏")
         elif action == "inq:edit":
             # Start the form over, keeping nothing half-edited.
             self.sessions[chat_id] = {"step": STEP_NAME, "data": {}}

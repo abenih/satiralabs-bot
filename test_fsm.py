@@ -111,7 +111,8 @@ def run() -> None:
     # Confirm via inline button.
     bot.handle_update(callback(visitor, "inq:confirm"))
     confirmations = [t for t in transport.messages_to(visitor) if "reference number" in t]
-    assert confirmations and "SL-0001" in confirmations[0], "visitor confirmation + ref"
+    assert confirmations and "Thank you" in confirmations[0] and "SL-0001" in confirmations[0], "visitor confirmation + thank-you + ref"
+    assert "Thank you for considering us 🙏" in confirmations[0], "visitor confirmation warm closing"
 
     saved = store.latest(5)
     assert len(saved) == 1 and saved[0]["name"] == "Abebe Kebede", "inquiry stored"
